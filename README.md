@@ -1,28 +1,34 @@
-# Ridan IP website
+# Ridan IP Website — Version 2
 
-Minimalist professional homepage for Ridan IP.
+Minimalist professional homepage for Ridan IP built around the **Independent Patent Attorney** positioning.
 
-## Files
+## Version 2 Focus & Updates
 
-- `index.html` — homepage
-- `css/style.css` — all styling
+- **Positioning:** Uses "INDEPENDENT PATENT ATTORNEY" eyebrow with primary headline *"Patent expertise for technology that matters."*
+- **Hero Hierarchy:** Clearly connects brand identity with UK & European patent representation.
+- **Content Expansion:** Introduces explicit 4-part service cards and a structured 4-step process section (*Understand, Strategise, Protect, Develop*).
+- **Styling:** Navy (`#050714`), Champagne-Gold (`#c6a36b`), and Crisp White card layout.
 
-## Run locally
+## File Structure
 
-Open `index.html` in a browser, or use VS Code Live Server.
+- `index.html` — Main landing page structure
+- `css/style.css` — Responsive design and typography styling
+- `assets/` — Logo image files (`ridan-ip-logo.png`)
 
-## GitHub Pages
+## Run Locally
 
-Push the repository to GitHub, then enable Pages under:
+Open `index.html` in your web browser or use VS Code's **Live Server** extension.
 
-Settings → Pages → Deploy from a branch → `main` → `/ (root)`
+## GitHub Pages Deployment
 
-Later, configure the Ridan IP domain as a custom domain.
+1. Commit and push these updated files to the `main` branch.
+2. Under Repository **Settings → Pages**:
+   - Source: **Deploy from a branch**
+   - Branch: `main` / Folder: `/ (root)`
+3. Save and wait for deployment to complete.
 
-## Before launch
+## Before Launch Checklist
 
-Replace the portrait placeholder with a professional photograph, review all service wording, and add final Privacy/Legal pages.
-
-
-## Logo
-The `assets` folder contains the supplied Ridan IP logo as a transparent PNG plus the original uploaded reference image. The current site uses the transparent version in the header and a navy/gold palette to match it.
+- [ ] Replace the Ritchie Daniel portrait placeholder (`.about-image`) with a high-resolution photograph.
+- [ ] Review phone number, email address, and registered company address details.
+- [ ] Add a dedicated `privacy.html` legal page linked in the footer.
