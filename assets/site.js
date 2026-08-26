@@ -1,1 +1,12 @@
-const b=document.querySelector('.menu'),n=document.querySelector('header nav');if(b&&n)b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));n.classList.toggle('open',!o)});const f=document.querySelector('form');if(f)f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f),s=encodeURIComponent('Website enquiry: '+d.get('type')),m=encodeURIComponent('Name: '+d.get('name')+'\nOrganisation: '+d.get('org')+'\nDeadline / launch: '+d.get('deadline')+'\n\nHigh-level description:\n'+d.get('message'));document.querySelector('.status').textContent='Your email application will open. Sending an email does not create an attorney-client relationship.';location.href='mailto:info@ridanip.com?subject='+s+'&body='+m});
+const b=document.querySelector('.menu'),n=document.querySelector('header nav');
+if(b&&n)b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));n.classList.toggle('open',!o)});
+
+const h=document.querySelector('header');
+if(h){
+  const updateHeader=()=>h.classList.toggle('is-scrolled',window.scrollY>24);
+  updateHeader();
+  window.addEventListener('scroll',updateHeader,{passive:true});
+}
+
+const f=document.querySelector('form');
+if(f)f.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(f),s=encodeURIComponent('Website enquiry: '+d.get('type')),m=encodeURIComponent('Name: '+d.get('name')+'\nOrganisation: '+d.get('org')+'\nDeadline / launch: '+d.get('deadline')+'\n\nHigh-level description:\n'+d.get('message'));document.querySelector('.status').textContent='Your email application will open. Sending an email does not create an attorney-client relationship.';location.href='mailto:info@ridanip.com?subject='+s+'&body='+m});
