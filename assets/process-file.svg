@@ -1,6 +1,11 @@
 <svg width="290" height="290" viewBox="0 0 290 290" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <title>File</title><desc>Start egg timer</desc>
-  <rect width="290" height="290" fill="#04112D"/>
-  <path d="M144.5 143L106 101H119.5L144.5 128L169 101H183L144.5 143Z" fill="#B8976C" stroke="#B8976C"/>
-  <path d="M144.5 147L106 189H119.5L144.5 162L169 189H183L144.5 147Z" fill="white" stroke="white"/>
+<g id="EggTimer Start">
+<rect id="Rectangle 4" width="290" height="290" fill="#04112D"/>
+<g id="Vector 61">
+<path id="Vector 1" d="M144.5 149L106 191H119.5L144.5 164L169 191H183L144.5 149Z" fill="white" stroke="white"/>
+</g>
+<g id="Vector 62">
+<path id="Vector 1_2" d="M144.5 145L106 103H119.5L144.5 130L169 103H183L144.5 145Z" fill="#B8976C" stroke="#B8976C"/>
+</g>
+</g>
 </svg>

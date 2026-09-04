@@ -1,6 +1,14 @@
 <svg width="290" height="290" viewBox="0 0 290 290" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <title>Develop</title><desc>Empty egg timer</desc>
-  <rect width="290" height="290" fill="#04112D"/>
-  <path d="M144.5 149L106 191H119.5L144.5 164L169 191H183L144.5 149Z" fill="white" stroke="white"/>
-  <path d="M144.5 145L106 103H119.5L144.5 130L169 103H183L144.5 145Z" fill="white" stroke="white"/>
+<g id="EggTimer Skeleton">
+<rect id="Rectangle 4" width="290" height="290" fill="#04112D"/>
+<g id="Group 336">
+<g id="Vector 61">
+<path id="Vector 1" d="M144.5 148L106 190H119.5L144.5 163L169 190H183L144.5 148Z" fill="#04112D" stroke="white" stroke-width="3"/>
+</g>
+<g id="Vector 62">
+<rect width="77" height="42" transform="matrix(1 0 0 -1 106 142)" fill="#04112D"/>
+<path id="Vector 1_2" d="M144.5 142L106 100H119.5L144.5 127L169 100H183L144.5 142Z" stroke="white" stroke-width="3"/>
+</g>
+</g>
+</g>
 </svg>
