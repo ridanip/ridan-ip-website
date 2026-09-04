@@ -8,7 +8,12 @@ Before public launch: add portrait, replace legal placeholders, confirm current 
 
 ## Process assets
 
-- `assets/eggtimer-start.png` - filing/start of formal application process
-- `assets/eggtimer-end.png` - grant or registration/end milestone
+* `assets/eggtimer-start.png` - filing/start of formal application process
+* `assets/eggtimer-end.png` - grant or registration/end milestone
 
 The website uses the process marks on the homepage lifecycle section. Replace the PNG files with the approved SVG exports later if preferred, retaining the same file purpose.
+
+
+
+Website v007 - lifecycle icon update.
+
