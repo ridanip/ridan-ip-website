@@ -19,5 +19,64 @@ h1{font-size:clamp(3rem,6.7vw,5.7rem);line-height:.99;letter-spacing:-.055em;mar
 /* RIDAN egg-timer process marks */
 .lifecycle .milestone img{display:block;width:6.5rem;height:6.5rem;object-fit:cover;margin:0 0 1.25rem;background:var(--navy)}.lifecycle .milestone{border-top-color:var(--copper)}
 @media(max-width:1000px){.g5{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(2,1fr)}.foot{grid-template-columns:1fr 1fr}}
-@media(max-width:760px){:root{--header-full:6rem;--header-compact:5rem}.wrap{width:min(calc(100% - 2rem),var(--max))}.logo img{width:190px}header.is-scrolled .logo img{width:172px}.menu{display:block}.nav nav{display:none;position:absolute;top:var(--header-compact);left:1rem;right:1rem;flex-direction:column;background:var(--navy);border:1px solid #ffffff2a;gap:0;box-shadow:0 12px 24px rgba(4,17,45,.2)}.nav nav.open{display:flex}.nav nav a{padding:1rem;border-bottom:1px solid #ffffff20}.hero{min-height:auto;padding:9rem 0 5rem}.hero-grid,.split,.heading{grid-template-columns:1fr;gap:2.5rem}.hero-icon{display:none}.section{padding:5rem 0}.g5,.g4,.g3,.g2{grid-template-columns:1fr}.life:not(:last-child):after{content:'↓'}.foot{grid-template-columns:1fr}.lifecycle .milestone img{width:5.5rem;height:5.5rem}}
+@media(max-width:760px){
+    :root{--header-full:6rem;--header-compact:5rem}
+    .wrap{width:min(calc(100% - 2rem),var(--max))}
+    .logo img{width:190px}
+    header.is-scrolled .logo img{width:172px}
+    .menu{display:block}
+    .nav nav{
+        display:none;
+        position:absolute;
+        top:var(--header-compact);
+        left:1rem;
+        right:1rem;
+        flex-direction:column;
+        background:var(--navy);
+        border:1px solid #ffffff2a;
+        gap:0;
+        box-shadow:0 12px 24px rgba(4,17,45,.2)
+    }
+    .nav nav.open{display:flex}
+    .nav nav a{
+        padding:1rem;
+        border-bottom:1px solid #ffffff20
+    }
+    .hero{
+        min-height:auto;
+        padding:9rem 0 5rem
+    }
+    .hero-grid,
+    .split,
+    .heading{
+        grid-template-columns:1fr;
+        gap:2.5rem
+    }
+    .hero-icon{display:none}
+    .section{padding:5rem 0}
+    .g5,
+    .g4,
+    .g3,
+    .g2{
+        grid-template-columns:1fr
+    }
+    .life:not(:last-child):after{
+        content:'↓';
+        left:50%;
+        right:auto;
+        transform:translateX(-50%);
+    }
+    .foot{
+        grid-template-columns:1fr
+    }
+    /* V008 mobile lifecycle improvements */
+    .lifecycle .milestone{
+        text-align:center;
+    }
+    .lifecycle .milestone img{
+        width:5.5rem;
+        height:5.5rem;
+        margin:0 auto 1rem auto;
+    }
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}header,.nav,.logo img{transition:none}}
