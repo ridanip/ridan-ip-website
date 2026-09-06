@@ -16,7 +16,7 @@
             toggle.type = 'button';
             toggle.className = 'nav-dropdown-toggle';
             toggle.setAttribute('aria-expanded', 'false');
-            toggle.innerHTML = 'Services <span class="nav-chevron" aria-hidden="true">˅</span>';
+            toggle.innerHTML = 'Services <span class="nav-chevron" aria-hidden="true">›</span>';
 
             if (servicesLink.hasAttribute('aria-current')) {
                 toggle.setAttribute('aria-current', 'page');
@@ -51,38 +51,78 @@
                 dropdownMenu.appendChild(link);
             });
 
+            const hoverInput = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+            const closeDropdown = () => {
+                dropdown.classList.remove('open');
+                toggle.setAttribute('aria-expanded', 'false');
+            };
+
             toggle.addEventListener('click', (event) => {
+                if (hoverInput.matches) {
+                    event.preventDefault();
+                    closeDropdown();
+                    return;
+                }
+
                 event.stopPropagation();
+                const isOpen = dropdown.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(isOpen));
+            });
 
-                const isOpen = dropdown.classList.contains('open');
-
-                if (isOpen) {
-                    dropdown.classList.remove('open');
-                    toggle.setAttribute('aria-expanded', 'false');
-
-                    if (window.matchMedia('(min-width: 761px)').matches) {
-                        dropdownMenu.style.display = 'none';
-                    }
-                } else {
-                    dropdownMenu.style.removeProperty('display');
-                    dropdown.classList.add('open');
+            dropdown.addEventListener('mouseenter', () => {
+                if (hoverInput.matches) {
                     toggle.setAttribute('aria-expanded', 'true');
                 }
             });
 
             dropdown.addEventListener('mouseleave', () => {
-                dropdownMenu.style.removeProperty('display');
+                if (hoverInput.matches) {
+                    closeDropdown();
+                }
             });
 
             document.addEventListener('click', (event) => {
                 if (!dropdown.contains(event.target)) {
-                    dropdown.classList.remove('open');
-                    toggle.setAttribute('aria-expanded', 'false');
+                    closeDropdown();
                 }
             });
 
             dropdown.append(toggle, dropdownMenu);
             servicesLink.replaceWith(dropdown);
+
+            if (!document.querySelector('style[data-dropdown-input-fix]')) {
+                const dropdownStyle = document.createElement('style');
+                dropdownStyle.dataset.dropdownInputFix = 'true';
+                dropdownStyle.textContent = `
+                    .nav-chevron {
+                        transform: rotate(0deg);
+                    }
+
+                    .nav-dropdown.open .nav-chevron {
+                        transform: rotate(90deg);
+                    }
+
+                    @media (hover: hover) and (pointer: fine) {
+                        .nav-dropdown:hover .nav-chevron,
+                        .nav-dropdown:focus-within .nav-chevron {
+                            transform: rotate(90deg);
+                        }
+                    }
+
+                    @media (hover: none), (pointer: coarse) {
+                        .nav-dropdown:hover > .dropdown-menu,
+                        .nav-dropdown:focus-within > .dropdown-menu {
+                            display: none;
+                        }
+
+                        .nav-dropdown.open > .dropdown-menu {
+                            display: block;
+                        }
+                    }
+                `;
+                document.head.appendChild(dropdownStyle);
+            }
         }
     }
 
