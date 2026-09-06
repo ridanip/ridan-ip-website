@@ -51,9 +51,27 @@
                 dropdownMenu.appendChild(link);
             });
 
-            toggle.addEventListener('click', () => {
-                const isOpen = dropdown.classList.toggle('open');
-                toggle.setAttribute('aria-expanded', String(isOpen));
+            toggle.addEventListener('click', (event) => {
+                event.stopPropagation();
+
+                const isOpen = dropdown.classList.contains('open');
+
+                if (isOpen) {
+                    dropdown.classList.remove('open');
+                    toggle.setAttribute('aria-expanded', 'false');
+
+                    if (window.matchMedia('(min-width: 761px)').matches) {
+                        dropdownMenu.style.display = 'none';
+                    }
+                } else {
+                    dropdownMenu.style.removeProperty('display');
+                    dropdown.classList.add('open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            dropdown.addEventListener('mouseleave', () => {
+                dropdownMenu.style.removeProperty('display');
             });
 
             document.addEventListener('click', (event) => {
