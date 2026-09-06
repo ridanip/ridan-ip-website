@@ -148,12 +148,7 @@
             iprsMenu.className = 'dropdown-menu';
 
             const iprsItems = [
-                ['Overview', ''],
-                ['Patents', 'patents/'],
-                ['Trade Marks', 'trade-marks/'],
-                ['Registered Designs', 'registered-designs/'],
-                ['Copyright', 'copyright/'],
-                ['Trade Secrets', 'trade-secrets/']
+                ['Overview', '']
             ];
 
             const currentIprsPath = window.location.pathname.replace(/\/+$/, '') + '/';
