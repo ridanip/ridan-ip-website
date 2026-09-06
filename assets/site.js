@@ -124,6 +124,94 @@
                 document.head.appendChild(dropdownStyle);
             }
         }
+
+        const iprsLink = Array.from(navigation.children).find((item) =>
+            item.matches('a') && item.textContent.trim().toLowerCase() === 'iprs'
+        );
+
+        if (iprsLink) {
+            const iprsUrl = new URL(iprsLink.getAttribute('href'), window.location.href);
+            const iprsDropdown = document.createElement('div');
+            iprsDropdown.className = 'nav-dropdown';
+
+            const iprsToggle = document.createElement('button');
+            iprsToggle.type = 'button';
+            iprsToggle.className = 'nav-dropdown-toggle';
+            iprsToggle.setAttribute('aria-expanded', 'false');
+            iprsToggle.innerHTML = 'IPRs <span class="nav-chevron" aria-hidden="true">›</span>';
+
+            if (iprsLink.hasAttribute('aria-current')) {
+                iprsToggle.setAttribute('aria-current', 'page');
+            }
+
+            const iprsMenu = document.createElement('div');
+            iprsMenu.className = 'dropdown-menu';
+
+            const iprsItems = [
+                ['Overview', ''],
+                ['Patents', 'patents/'],
+                ['Trade Marks', 'trade-marks/'],
+                ['Registered Designs', 'registered-designs/'],
+                ['Copyright', 'copyright/'],
+                ['Trade Secrets', 'trade-secrets/']
+            ];
+
+            const currentIprsPath = window.location.pathname.replace(/\/+$/, '') + '/';
+
+            iprsItems.forEach(([label, path]) => {
+                const link = document.createElement('a');
+                const itemUrl = new URL(path, iprsUrl);
+                const itemPath = itemUrl.pathname.replace(/\/+$/, '') + '/';
+                link.href = itemUrl.href;
+                link.textContent = label;
+
+                if (currentIprsPath === itemPath) {
+                    link.setAttribute('aria-current', 'page');
+                }
+
+                iprsMenu.appendChild(link);
+            });
+
+            const iprsHoverInput = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+            const closeIprsDropdown = () => {
+                iprsDropdown.classList.remove('open');
+                iprsToggle.setAttribute('aria-expanded', 'false');
+            };
+
+            iprsToggle.addEventListener('click', (event) => {
+                if (iprsHoverInput.matches) {
+                    event.preventDefault();
+                    closeIprsDropdown();
+                    return;
+                }
+
+                event.stopPropagation();
+                const isOpen = iprsDropdown.classList.toggle('open');
+                iprsToggle.setAttribute('aria-expanded', String(isOpen));
+            });
+
+            iprsDropdown.addEventListener('mouseenter', () => {
+                if (iprsHoverInput.matches) {
+                    iprsToggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            iprsDropdown.addEventListener('mouseleave', () => {
+                if (iprsHoverInput.matches) {
+                    closeIprsDropdown();
+                }
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!iprsDropdown.contains(event.target)) {
+                    closeIprsDropdown();
+                }
+            });
+
+            iprsDropdown.append(iprsToggle, iprsMenu);
+            iprsLink.replaceWith(iprsDropdown);
+        }
     }
 
     if (menuButton && navigation) {
