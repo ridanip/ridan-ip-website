@@ -134,12 +134,27 @@
             const card = track.querySelector('.testimonial-card');
             const motionReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             buttons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-                    const distance = card.getBoundingClientRect().width + gap;
-                    track.scrollBy({left: button.dataset.direction === 'next' ? distance : -distance, behavior: motionReduced ? 'auto' : 'smooth'});
-                });
-            });
+     		button.addEventListener('click', () => {
+        		const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+        		const distance = card.getBoundingClientRect().width + gap;
+
+        		const target =
+            			button.dataset.direction === 'next'
+                			? Math.min(
+                    				track.scrollLeft + distance,
+                    				track.scrollWidth - track.clientWidth
+                			)
+			                : Math.max(
+			                	track.scrollLeft - distance,
+                    				0
+                			);
+
+        		track.scrollTo({
+            			left: target,
+            			behavior: motionReduced ? 'auto' : 'smooth'
+        		});
+    		});
+	});
         })();
     </script>
 </body>
