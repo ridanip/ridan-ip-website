@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ridanip.com/sitemap.xml
+Sitemap: https://www.ridanip.com/sitemap.xml
