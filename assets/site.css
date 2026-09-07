@@ -26,3 +26,16 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
 @media(prefers-reduced-motion:reduce){.lifecycle-chevron,.lifecycle-detail{transition:none}}
 /* V041.1 Trust notes */
 .trust-note{max-width:40rem;margin:1.75rem 0 2rem;padding:.15rem 0 .15rem 1rem;border-left:2px solid var(--copper)}.trust-note p,.cta .trust-note p{margin:0;color:var(--muted);font-size:.95rem;line-height:1.6;font-style:italic}.trust-note-attribution {margin-top:.6rem;padding:0;background:transparent;color:var(--ink);font-size:.78rem;line-height:1.45}.trust-note-attribution strong{display:block;color:var(--ink);font-size:.78rem;letter-spacing:0;text-transform:none;margin:0}.trust-note-attribution span{display:block;color:var(--muted)}
+
+/* V050.0 About page: keep portrait and credentials visible while biography scrolls */
+@media(min-width:1001px){
+  .split:has(> div > .portrait + .list){
+    align-items:start;
+  }
+
+  .split > div:has(> .portrait + .list){
+    position:sticky;
+    top:calc(var(--header-compact) + 1rem);
+    align-self:start;
+  }
+}
