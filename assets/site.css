@@ -41,3 +41,19 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
     align-self:start;
   }
 }
+
+
+/* V050.5 Homepage profile spacing, tablet portrait only */
+@media(min-width:769px) and (max-width:1100px) and (orientation:portrait){
+  .home-profile{
+    grid-template-columns:1fr 1.15fr;
+    gap:3rem;
+    align-items:start;
+  }
+
+  .home-profile .portrait{
+    width:100%;
+    max-width:none;
+    margin:0;
+  }
+}
