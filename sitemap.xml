@@ -1,48 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<url>
-  <loc>https://ridanip.com/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/services/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/about/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/types/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/accessibility/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/articles/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/articles/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/about/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/complaints/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/testimonials/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/contact/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/contact/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/privacy/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/privacy/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/services/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/terms/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/terms/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/complaints/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/testimonials/</loc>
+  </url>
 
-<url>
-  <loc>https://ridanip.com/accessibility/</loc>
-</url>
+  <url>
+    <loc>https://www.ridanip.com/types/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/fractional-in-house-ip-support-when-does-it-make-sense/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/patent-or-trade-secret/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/patenting-for-startups/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/what-investors-look-for-in-an-ip-portfolio/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/when-should-a-startup-file-a-patent-application/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/articles/who-owns-the-intellectual-property/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/fractional-in-house-support/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/ip-audit/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/ip-strategy-opinions/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/patents/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/registered-designs/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/services/trade-secrets/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/types/copyright/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/types/patents/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/types/registered-designs/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/types/trade-marks/</loc>
+  </url>
+
+  <url>
+    <loc>https://www.ridanip.com/types/trade-secrets/</loc>
+  </url>
 
 </urlset>
