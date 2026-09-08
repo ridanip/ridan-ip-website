@@ -61,12 +61,12 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
   }
 }
 
-/* V053.5 Article lists: align copper-chevron lists with numbered lists */
+/* V053.6 Article lists: align copper-chevron text with numbered-list text */
 .prose h2.article-chevron{padding-left:0}
 .prose h2.article-chevron::before{content:none}
-.prose ul{list-style:none;padding-left:1.4rem}
-.prose ul>li{position:relative;padding-left:.1rem}
-.prose ul>li::before{content:'›';position:absolute;left:-1.05rem;top:0;color:var(--copper-accessible);font-weight:700}
+.prose ul{list-style:none;padding-left:2.5rem}
+.prose ul>li{position:relative;padding-left:0}
+.prose ul>li::before{content:'›';position:absolute;left:-1rem;top:0;color:var(--copper-accessible);font-weight:700}
 
 /* V053.4 Mobile menu scrolling and touch containment */
 @media(max-width:768px){
