@@ -82,3 +82,52 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
   }
   body.menu-open{overflow:hidden}
 }
+
+/* V053.8 Responsive navigation: switch to compact menu before desktop nav becomes cramped */
+@media(max-width:960px){
+  .menu{display:block}
+  .nav nav{
+    display:none;
+    position:absolute;
+    top:var(--header-full);
+    left:1rem;
+    right:1rem;
+    flex-direction:column;
+    background:var(--navy);
+    border:1px solid #ffffff2a;
+    gap:0;
+    box-shadow:0 12px 24px rgba(4,17,45,.2)
+  }
+  header.is-scrolled .nav nav{top:var(--header-compact)}
+  .nav nav.open{
+    display:flex;
+    position:fixed;
+    top:var(--header-full);
+    left:1rem;
+    right:1rem;
+    max-height:calc(100dvh - var(--header-full) - 1rem);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y
+  }
+  header.is-scrolled .nav nav.open{
+    top:var(--header-compact);
+    max-height:calc(100dvh - var(--header-compact) - 1rem)
+  }
+  .nav nav a{padding:1rem;border-bottom:1px solid #ffffff20}
+  .nav-dropdown{display:block}
+  .nav-dropdown-toggle{
+    width:100%;
+    justify-content:flex-start;
+    padding:1rem;
+    border-bottom:1px solid #ffffff20;
+    text-align:left
+  }
+  .nav-dropdown:hover>.dropdown-menu,.nav-dropdown:focus-within>.dropdown-menu{display:none}
+  .nav-dropdown.open>.dropdown-menu{display:block}
+  .dropdown-menu{position:static;min-width:0;padding:0;background:#ffffff08;border:0;box-shadow:none}
+  .nav nav .dropdown-menu a{padding:.85rem 1rem .85rem 2rem}
+  body.menu-open{overflow:hidden}
+}
+
