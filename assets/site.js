@@ -39,6 +39,32 @@
             document.addEventListener('click', (event) => { if (!iprsDropdown.contains(event.target)) closeIprsDropdown(); });
             iprsDropdown.append(iprsToggle, iprsMenu); iprsLink.replaceWith(iprsDropdown);
         }
+        const articlesLink = Array.from(navigation.children).find((item) => item.matches('a') && item.textContent.trim().toLowerCase() === 'articles');
+        if (articlesLink) {
+            const articlesUrl = new URL(articlesLink.getAttribute('href'), window.location.href);
+            const articlesDropdown = document.createElement('div'); articlesDropdown.className = 'nav-dropdown';
+            const articlesToggle = document.createElement('button'); articlesToggle.type = 'button'; articlesToggle.className = 'nav-dropdown-toggle'; articlesToggle.setAttribute('aria-expanded', 'false'); articlesToggle.innerHTML = 'Articles <span class="nav-chevron" aria-hidden="true">›</span>';
+            if (articlesLink.hasAttribute('aria-current')) articlesToggle.setAttribute('aria-current', 'page');
+            const articlesMenu = document.createElement('div'); articlesMenu.className = 'dropdown-menu';
+            const articleItems = [
+                ['Overview', ''],
+                ['Patent or Trade Secret?', 'patent-or-trade-secret/'],
+                ['When Should a Startup File?', 'when-should-a-startup-file-a-patent-application/'],
+                ['Patenting for Startups', 'patenting-for-startups/'],
+                ['Who Owns the IP?', 'who-owns-the-intellectual-property/'],
+                ['What Investors Look For', 'what-investors-look-for-in-an-ip-portfolio/'],
+                ['Fractional In-House IP Support', 'fractional-in-house-ip-support-when-does-it-make-sense/']
+            ];
+            const currentArticlesPath = window.location.pathname.replace(/\/+$/, '') + '/';
+            articleItems.forEach(([label, path]) => { const link = document.createElement('a'); const itemUrl = new URL(path, articlesUrl); const itemPath = itemUrl.pathname.replace(/\/+$/, '') + '/'; link.href = itemUrl.href; link.textContent = label; if (currentArticlesPath === itemPath) link.setAttribute('aria-current', 'page'); articlesMenu.appendChild(link); });
+            const articlesHoverInput = window.matchMedia('(hover: hover) and (pointer: fine)');
+            const closeArticlesDropdown = () => { articlesDropdown.classList.remove('open'); articlesToggle.setAttribute('aria-expanded', 'false'); };
+            articlesToggle.addEventListener('click', (event) => { if (articlesHoverInput.matches) { event.preventDefault(); closeArticlesDropdown(); return; } event.stopPropagation(); const isOpen = articlesDropdown.classList.toggle('open'); articlesToggle.setAttribute('aria-expanded', String(isOpen)); });
+            articlesDropdown.addEventListener('mouseenter', () => { if (articlesHoverInput.matches) articlesToggle.setAttribute('aria-expanded', 'true'); });
+            articlesDropdown.addEventListener('mouseleave', () => { if (articlesHoverInput.matches) closeArticlesDropdown(); });
+            document.addEventListener('click', (event) => { if (!articlesDropdown.contains(event.target)) closeArticlesDropdown(); });
+            articlesDropdown.append(articlesToggle, articlesMenu); articlesLink.replaceWith(articlesDropdown);
+        }
     }
     if (menuButton && navigation) menuButton.addEventListener('click', () => { const isOpen = menuButton.getAttribute('aria-expanded') === 'true'; menuButton.setAttribute('aria-expanded', String(!isOpen)); navigation.classList.toggle('open', !isOpen); });
     const header = document.querySelector('header');

@@ -60,3 +60,7 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
     align-self:start;
   }
 }
+
+/* Article section branding: restrained copper chevron on key comparison headings */
+.prose h2.article-chevron{position:relative;padding-left:1.15rem}
+.prose h2.article-chevron::before{content:'›';position:absolute;left:0;top:.02em;color:var(--copper-accessible);font-weight:700}
