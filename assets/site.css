@@ -61,6 +61,24 @@ header{position:fixed;inset:0 0 auto;color:white;z-index:50;background:transpare
   }
 }
 
-/* Article section branding: restrained copper chevron on key comparison headings */
-.prose h2.article-chevron{position:relative;padding-left:1.15rem}
-.prose h2.article-chevron::before{content:'›';position:absolute;left:0;top:.02em;color:var(--copper-accessible);font-weight:700}
+/* V053.4 Article lists: restrained RIDAN copper chevrons replace standard bullet dots */
+.prose h2.article-chevron{padding-left:0}
+.prose h2.article-chevron::before{content:none}
+.prose ul{list-style:none;padding-left:0}
+.prose ul>li{position:relative;padding-left:1.15rem}
+.prose ul>li::before{content:'›';position:absolute;left:0;top:0;color:var(--copper-accessible);font-weight:700}
+
+/* V053.4 Mobile menu scrolling and touch containment */
+@media(max-width:768px){
+  .nav nav.open{
+    position:fixed;
+    top:var(--header-compact);
+    left:1rem;right:1rem;
+    max-height:calc(100dvh - var(--header-compact) - 1rem);
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+  body.menu-open{overflow:hidden}
+}
