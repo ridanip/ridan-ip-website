@@ -10,7 +10,7 @@
             const toggle = document.createElement('button'); toggle.type = 'button'; toggle.className = 'nav-dropdown-toggle'; toggle.setAttribute('aria-expanded', 'false'); toggle.innerHTML = 'Services <span class="nav-chevron" aria-hidden="true">›</span>';
             if (servicesLink.hasAttribute('aria-current')) toggle.setAttribute('aria-current', 'page');
             const dropdownMenu = document.createElement('div'); dropdownMenu.className = 'dropdown-menu';
-            const serviceItems = [['Overview', ''],['Patents', 'patents/'],['Registered Designs', 'registered-designs/'],['Trade Secrets', 'trade-secrets/'],['IP Strategy & Opinions', 'ip-strategy-opinions/'],['Fractional In-House Support', 'fractional-in-house-support/'],['IP Audit', 'ip-audit/']];
+            const serviceItems = [['Overview', ''],['Patents', 'patents/'],['Registered Designs', 'registered-designs/'],['Trade Secrets', 'trade-secrets/'],['IP Strategy & Opinions', 'ip-strategy-opinions/'],['Fractional In-House Support', 'fractional-in-house-support/'],['IP Audit', 'ip-audit/'],['Overseas Attorneys', '../overseas-attorneys/']];
             const currentPath = window.location.pathname.replace(/\/+$/, '') + '/';
             serviceItems.forEach(([label, path]) => { const link = document.createElement('a'); const itemUrl = new URL(path, servicesUrl); const itemPath = itemUrl.pathname.replace(/\/+$/, '') + '/'; link.href = itemUrl.href; link.textContent = label; if (currentPath === itemPath) link.setAttribute('aria-current', 'page'); dropdownMenu.appendChild(link); });
             const hoverInput = window.matchMedia('(hover: hover) and (pointer: fine)');
