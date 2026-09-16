@@ -1,0 +1,47 @@
+name: Notify IndexNow
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the published revision
+        uses: actions/checkout@v4
+
+      - name: Submit canonical URLs to IndexNow
+        env:
+          INDEXNOW_KEY: 50fc2c47163308495324f5cc4c184895766292eb148e5cd4a4f9bfd2b18155b0
+          INDEXNOW_KEY_LOCATION: https://www.ridanip.com/50fc2c47163308495324f5cc4c184895766292eb148e5cd4a4f9bfd2b18155b0.txt
+          INDEXNOW_HOST: www.ridanip.com
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          sitemap = ET.parse(Path("sitemap.xml"))
+          namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [node.text for node in sitemap.findall("sm:url/sm:loc", namespace)]
+          payload = {
+              "host": os.environ["INDEXNOW_HOST"],
+              "key": os.environ["INDEXNOW_KEY"],
+              "keyLocation": os.environ["INDEXNOW_KEY_LOCATION"],
+              "urlList": urls,
+          }
+          request = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              print(f"IndexNow accepted {len(urls)} URLs (HTTP {response.status}).")
+          PY
