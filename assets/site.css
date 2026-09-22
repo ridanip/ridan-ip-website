@@ -143,7 +143,7 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 .foot .footer-whatsapp{display:flex;align-items:center;gap:6px;width:fit-content;max-width:100%;color:#ffffffa8}
 .footer-whatsapp svg{flex:0 0 15px;width:15px;height:15px;color:inherit}
 .footer-whatsapp span{min-width:0}
-.foot .footer-whatsapp:hover span{text-decoration:underline;text-underline-offset:.2em}
+.foot a:hover,.foot a:focus-visible,.foot a:hover span,.foot a:focus-visible span{text-decoration:underline;text-underline-offset:.2em}
 .foot .footer-whatsapp:focus-visible{outline:2px solid #fff;outline-offset:4px;border-radius:2px}
 
 /* V061.5: consistent footer contact spacing and icon alignment */
