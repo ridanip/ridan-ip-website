@@ -154,5 +154,8 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 /* V064.7: desktop footer icon alignment */
 @media(min-width:769px){.footer-contact a svg{transform:translateY(-3px)}}
 
-/* V064.9: centre the LinkedIn footer icon on mobile */
-@media(max-width:768px){.footer-contact a[href="https://www.linkedin.com/company/ridanip/"] svg{transform:none}}
+/* V064.10: refine the LinkedIn footer icon alignment on mobile */
+@media(max-width:768px){.footer-contact a[href="https://www.linkedin.com/company/ridanip/"] svg{transform:translateY(-1px)}}
+
+/* V064.11: lower the LinkedIn footer icon by 1px on desktop */
+@media(min-width:769px){.footer-contact a[href="https://www.linkedin.com/company/ridanip/"] svg{transform:translateY(-2px)}}
