@@ -148,5 +148,5 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 
 /* V061.5: consistent footer contact spacing and icon alignment */
 .foot .footer-contact a{display:flex;align-items:center;gap:6px}
-.footer-contact a svg{flex:0 0 15px;width:15px;height:15px;margin:0!important}
+.footer-contact a svg{flex:0 0 15px;width:15px;height:15px;margin:0!important;transform:translateY(-1px)}
 .foot .footer-contact p{margin:.85rem 0 0}
