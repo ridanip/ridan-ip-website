@@ -132,6 +132,31 @@
         });
         document.addEventListener('click', (event) => { if (!hoverInput.matches && !event.target.closest('.lifecycle-stage')) lifecycleStages.forEach(closeStage); });
     }
+    const footerGrid = document.querySelector('footer .foot');
+    if (footerGrid && !footerGrid.querySelector('.footer-accreditations')) {
+        const accreditations = document.createElement('div');
+        accreditations.className = 'footer-accreditations';
+        const footerLogos = [
+            ['https://www.cipa.org.uk/', '/assets/cipa-logo-white.webp', "Visit CIPA's website", 'logo-cipa', 512, 122],
+            ['https://ipreg.org.uk/', '/assets/ipreg-logo.webp', "Visit IPReg's website", 'logo-ipreg', 490, 122],
+            ['https://www.fsb.org.uk/', '/assets/fsb-member-logo-white.png', "visit FSB's website", 'logo-fsb', 2048, 1152]
+        ];
+        footerLogos.forEach(([href, src, alt, className, width, height]) => {
+            const link = document.createElement('a');
+            link.href = href;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            const logo = document.createElement('img');
+            logo.src = src;
+            logo.alt = alt;
+            logo.className = className;
+            logo.width = width;
+            logo.height = height;
+            link.appendChild(logo);
+            accreditations.appendChild(link);
+        });
+        footerGrid.appendChild(accreditations);
+    }
     const form = document.querySelector('form');
     if (form) form.addEventListener('submit', (event) => { event.preventDefault(); const data = new FormData(form); const subject = encodeURIComponent('Website enquiry: ' + data.get('type')); const message = encodeURIComponent('Name: ' + data.get('name') + '\nOrganisation: ' + data.get('org') + '\nDeadline / launch: ' + data.get('deadline') + '\n\nHigh-level description:\n' + data.get('message')); const status = document.querySelector('.status'); if (status) status.textContent = 'Your email application will open. Sending an email does not create an attorney-client relationship.'; window.location.href = 'mailto:info@ridanip.com?subject=' + subject + '&body=' + message; });
 })();
