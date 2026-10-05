@@ -159,3 +159,16 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 
 /* V064.11: lower the LinkedIn footer icon by 1px on desktop */
 @media(min-width:769px){.footer-contact a[href="https://www.linkedin.com/company/ridanip/"] svg{transform:translateY(-2px)}}
+
+/* V066.5: keep growing article menus within the viewport */
+@media(min-width:961px){
+  .nav-dropdown .dropdown-menu{
+    max-height:calc(100vh - var(--header-full) - 1rem);
+    max-height:calc(100dvh - var(--header-full) - 1rem);
+    overflow-y:auto;
+    overscroll-behavior:contain
+  }
+}
+@media(max-width:960px){
+  .nav nav .dropdown-menu a{white-space:normal;overflow-wrap:anywhere}
+}
