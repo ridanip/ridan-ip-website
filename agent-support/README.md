@@ -1,3 +1,10 @@
+> **Current patch release:** V069.3 applies over V069.2 and preserves this optional
+> proxy and the existing GitHub Pages deployment. Apply the patch's relative paths
+> at the repository root, retaining all unchanged files. The sections below describe
+> the original V069.0 patch; content and metadata have since been improved.
+> For the current static checks, also run `python3 scripts/verify-site.py` from
+> the repository root. This proxy has not been enabled or redeployed by V069.3.
+
 # V069.0: Agent readiness
 
 This is a twelve-file patch over V068.1. Apply the ZIP contents at the existing

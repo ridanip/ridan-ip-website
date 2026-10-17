@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V069.2 HTTP checks. Python 3.11+, standard library only; does not deploy."""
+"""RIDAN IP HTTP checks. Python 3.11+, standard library only; does not deploy."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
@@ -214,7 +214,7 @@ def main():
             status, headers, body, _ = fetch(path)
             assert status == 200, f"Expected 200, got {status}"
             # With */*, content must match the release, including browser pages.
-            assert same_content(body, file.read_bytes(), file), "Published content differs from V069.2 files"
+            assert same_content(body, file.read_bytes(), file), "Published content differs from the local release files"
             if file.suffix == ".html":
                 assert headers.get_content_type() == "text/html", "HTML Content-Type missing"
                 check_schema(body)
