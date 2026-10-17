@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""V069.0 HTTP checks. Python 3.11+, standard library only; does not deploy."""
+"""V069.2 HTTP checks. Python 3.11+, standard library only; does not deploy."""
 import argparse
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date
 from html.parser import HTMLParser
 import json
 from pathlib import Path
@@ -15,6 +16,8 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 ORG_ID = "https://www.ridanip.com/#organization"
 PERSON_ID = "https://www.ridanip.com/#ritchie-daniel"
+HOME_URL = "https://www.ridanip.com/"
+SITEMAP_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
 
 class PreserveHeadRedirects(urllib.request.HTTPRedirectHandler):
@@ -39,19 +42,41 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__()
         self.scripts, self.current = [], None
+        self.meta, self.canonicals, self.title = {}, [], []
+        self.language = None
+        self.in_head = self.in_title = False
 
     def handle_starttag(self, tag, attrs):
-        if tag == "script" and dict(attrs).get("type") == "application/ld+json":
+        attrs = dict(attrs)
+        if tag == "html":
+            self.language = attrs.get("lang")
+        if tag == "head":
+            self.in_head = True
+        if tag == "title" and self.in_head:
+            self.in_title = True
+        if tag == "meta" and self.in_head:
+            key = attrs.get("name") or attrs.get("property")
+            if key:
+                self.meta.setdefault(key, []).append(attrs.get("content", ""))
+        if tag == "link" and self.in_head and attrs.get("rel") == "canonical":
+            self.canonicals.append(attrs.get("href"))
+        if tag == "script" and attrs.get("type") == "application/ld+json":
             self.current = []
 
     def handle_data(self, data):
         if self.current is not None:
             self.current.append(data)
+        elif self.in_title:
+            self.title.append(data)
 
     def handle_endtag(self, tag):
         if tag == "script" and self.current is not None:
             self.scripts.append(json.loads("".join(self.current)))
             self.current = None
+        if tag == "title":
+            self.in_title = False
+        if tag == "head":
+            self.in_head = False
 
 
 def objects(value):
@@ -80,6 +105,57 @@ def check_schema(body):
             assert all(contact.get(k) for k in ("contactType", "email", "telephone")), "Incomplete contactPoint"
         if node.get("@id") == PERSON_ID and "Person" in types:
             assert len(node.get("description", "").strip()) >= 20, "Person description missing"
+
+
+def check_homepage(body):
+    page = Page()
+    page.feed(body.decode("utf-8"))
+    descriptions = page.meta.get("description", [])
+    assert len(descriptions) == 1, "Homepage needs one meta description"
+    description = descriptions[0]
+    assert 120 <= len(description) <= 160, "Homepage description should be 120-160 characters"
+    assert all(term in description.lower() for term in ("uk", "european", "bath", "start-ups", "smes", "mechanical")), "Homepage description omits its location, audience or expertise"
+    for key in ("og:description", "twitter:description"):
+        assert page.meta.get(key) == [description], f"Homepage {key} differs from its description"
+    assert page.canonicals == [HOME_URL], "Homepage canonical URL differs"
+
+    definitions = [node for node in objects(page.scripts) if node.get("@type")]
+    webpages = [node for node in definitions if "WebPage" in ([node["@type"]] if isinstance(node["@type"], str) else node["@type"])]
+    assert len(webpages) == 1, "Homepage needs one WebPage entity"
+    webpage = webpages[0]
+    assert webpage.get("@id") == HOME_URL + "#webpage" and webpage.get("url") == HOME_URL, "WebPage identity differs from canonical URL"
+    assert webpage.get("name") == "".join(page.title).strip(), "WebPage name differs from the page title"
+    assert webpage.get("description") == description, "WebPage description differs from the page metadata"
+    assert webpage.get("inLanguage") == page.language == "en-GB", "WebPage language differs from the HTML language"
+    for key in ("mainEntity", "publisher"):
+        assert webpage.get(key) == {"@id": ORG_ID}, f"WebPage {key} must reference the existing organisation"
+    for identifier in (ORG_ID, PERSON_ID):
+        assert len([node for node in definitions if node.get("@id") == identifier]) == 1, "Existing organisation or person definition missing or duplicated"
+
+
+def check_sitemap(body):
+    tree = ET.fromstring(body)
+    assert tree.tag == SITEMAP_NS + "urlset", "Sitemap namespace"
+    urls = tree.findall(SITEMAP_NS + "url")
+    assert urls, "Sitemap has no URLs"
+    seen = set()
+    for entry in urls:
+        locations = entry.findall(SITEMAP_NS + "loc")
+        assert len(locations) == 1 and locations[0].text, "Each sitemap entry needs one URL"
+        location = locations[0].text.strip()
+        parsed = urllib.parse.urlsplit(location)
+        assert parsed.scheme == "https" and parsed.netloc == "www.ridanip.com" and not parsed.query and not parsed.fragment, "Sitemap URL is not canonical"
+        assert location not in seen, "Duplicate sitemap URL"
+        seen.add(location)
+        modified = entry.findall(SITEMAP_NS + "lastmod")
+        assert len(modified) == 1, "Each sitemap URL needs one lastmod date"
+        value = (modified[0].text or "").strip()
+        assert re.fullmatch(r"\d{4}-\d{2}-\d{2}", value), "Invalid sitemap lastmod format"
+        try:
+            modified_date = date.fromisoformat(value)
+        except ValueError as error:
+            raise AssertionError("Invalid sitemap lastmod date") from error
+        assert modified_date <= date.today(), "Sitemap lastmod date is in the future"
 
 
 def main():
@@ -138,13 +214,14 @@ def main():
             status, headers, body, _ = fetch(path)
             assert status == 200, f"Expected 200, got {status}"
             # With */*, content must match the release, including browser pages.
-            assert same_content(body, file.read_bytes(), file), "Published content differs from V069.0 files"
+            assert same_content(body, file.read_bytes(), file), "Published content differs from V069.2 files"
             if file.suffix == ".html":
                 assert headers.get_content_type() == "text/html", "HTML Content-Type missing"
                 check_schema(body)
+                if path == "/":
+                    check_homepage(body)
             elif file.name == "sitemap.xml":
-                tree = ET.fromstring(body)
-                assert tree.tag == "{http://www.sitemaps.org/schemas/sitemap/0.9}urlset", "Sitemap namespace"
+                check_sitemap(body)
             elif file.name == "site.webmanifest":
                 assert json.loads(body)["name"] == "RIDAN IP", "Invalid webmanifest"
             elif file.name == "llms.txt":
