@@ -17,6 +17,15 @@ ORG_ID = "https://www.ridanip.com/#organization"
 PERSON_ID = "https://www.ridanip.com/#ritchie-daniel"
 
 
+class PreserveHeadRedirects(urllib.request.HTTPRedirectHandler):
+    """Keep HEAD as HEAD when following canonical/HTTPS redirects."""
+    def redirect_request(self, request, response, code, message, headers, new_url):
+        redirected = super().redirect_request(request, response, code, message, headers, new_url)
+        if redirected is not None and request.get_method() == "HEAD":
+            redirected.method = "HEAD"
+        return redirected
+
+
 def same_content(actual, expected, file):
     # Git may normalise Windows line endings between an uploaded ZIP and Pages.
     # This is not a content change; binary assets must still match byte for byte.
@@ -90,7 +99,7 @@ def main():
             "Accept": accept, "User-Agent": "RIDAN-IP-Agent-Readiness-Verification/1.0"
         })
         try:
-            response = urllib.request.urlopen(request, timeout=args.timeout)
+            response = urllib.request.build_opener(PreserveHeadRedirects()).open(request, timeout=args.timeout)
         except urllib.error.HTTPError as error:
             response = error
         with response:
@@ -139,7 +148,7 @@ def main():
             elif file.name == "site.webmanifest":
                 assert json.loads(body)["name"] == "RIDAN IP", "Invalid webmanifest"
             elif file.name == "llms.txt":
-                text = body.decode("utf-8")
+                text = body.decode("utf-8").replace("\r\n", "\n")
                 assert text.startswith("# RIDAN IP\n\n> "), "llms.txt opening format"
                 assert "## When to use this" in text and "## How an agent should contact RIDAN IP" in text, "Agent instructions missing"
         add(f"GET {path}", public_file)

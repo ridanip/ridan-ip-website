@@ -220,7 +220,7 @@ test('Vary merging is case-insensitive and preserves a wildcard', async () => {
 });
 
 test('llms.txt follows the ordered H1, summary and linked H2 file-list format', async () => {
-  const text = await readFile(resolve(root, 'llms.txt'), 'utf8');
+  const text = (await readFile(resolve(root, 'llms.txt'), 'utf8')).replace(/\r\n/g, '\n');
   assert.match(text, /^# RIDAN IP\n\n> [^\n]+\n\n/);
   assert.equal((text.match(/^# /gm) || []).length, 1);
   const sections = text.split(/^## /m).slice(1);
@@ -234,7 +234,7 @@ test('llms.txt follows the ordered H1, summary and linked H2 file-list format', 
   assert.match(text, /website does not submit/);
 });
 
-test('all local pages and machine files pass the full HTTP verifier through the handler', async () => {
+test('all local pages and machine files pass the HTTP verifier, including canonical HEAD redirects', async () => {
   // Simulate GitHub's text line-ending normalisation; leave binary bytes exact.
   const deployedOrigin = async (request) => {
     const upstream = await origin(request);
@@ -248,6 +248,12 @@ test('all local pages and machine files pass the full HTTP verifier through the 
   };
   const server = createServer(async (req, res) => {
     try {
+      // Simulate the apex-to-www redirect without requiring external DNS.
+      if (req.url.startsWith('/__verification-redirect/')) {
+        res.writeHead(301, { Location: req.url.slice('/__verification-redirect'.length) });
+        res.end();
+        return;
+      }
       const response = await handleRequest(new Request('http://' + req.headers.host + req.url,
         { method: req.method, headers: req.headers }), deployedOrigin);
       res.writeHead(response.status, Object.fromEntries(response.headers));
@@ -258,7 +264,8 @@ test('all local pages and machine files pass the full HTTP verifier through the 
   try {
     const result = await new Promise((done, reject) => {
       const child = spawn('python3', [resolve(root, 'scripts/verify-agent-readiness.py'),
-        '--base-url', `http://127.0.0.1:${server.address().port}`], { cwd: root });
+        '--base-url', `http://127.0.0.1:${server.address().port}`,
+        '--alias', `http://127.0.0.1:${server.address().port}/__verification-redirect`], { cwd: root });
       let output = '';
       child.stdout.on('data', (data) => { output += data; });
       child.stderr.on('data', (data) => { output += data; });
