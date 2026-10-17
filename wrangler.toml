@@ -1,0 +1,14 @@
+name = "ridan-ip-agent-support"
+main = "worker.mjs"
+compatibility_date = "2026-10-17"
+workers_dev = false
+preview_urls = false
+
+# Keep GitHub Pages as the DNS origin. These are Routes, not Custom Domains.
+[[routes]]
+pattern = "www.ridanip.com/*"
+zone_name = "ridanip.com"
+
+[[routes]]
+pattern = "ridanip.com/*"
+zone_name = "ridanip.com"
