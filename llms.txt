@@ -31,5 +31,6 @@ Best fit: businesses developing physical products, including start-ups, SMEs and
 ## Optional
 
 - [Articles](https://www.ridanip.com/articles/): General explanations of patent and IP topics. These are background information rather than advice on a particular matter.
+- [Preparing your IP portfolio for investment](https://www.ridanip.com/articles/what-investors-look-for-in-an-ip-portfolio/): Patent-led guidance for hardware startups and engineering SMEs on product coverage, ownership, filing options and proportionate freedom-to-operate work before funding.
 - [Privacy notice](https://www.ridanip.com/privacy/): Information about personal data.
 - [Terms of use](https://www.ridanip.com/terms/): Website terms.

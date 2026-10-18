@@ -42,7 +42,7 @@
                 ['When Should a Startup File?', 'when-should-a-startup-file-a-patent-application/'],
                 ['Patenting for Startups', 'patenting-for-startups/'],
                 ['Who Owns the IP?', 'who-owns-the-intellectual-property/'],
-                ['What Investors Look For', 'what-investors-look-for-in-an-ip-portfolio/'],
+                ['Preparing for Investment', 'what-investors-look-for-in-an-ip-portfolio/'],
                 ['Fractional In-House IP Support', 'fractional-in-house-ip-support-when-does-it-make-sense/']
             ];
             const currentArticlesPath = window.location.pathname.replace(/\/+$/, '') + '/';
