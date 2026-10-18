@@ -6,7 +6,7 @@ RIDAN IP is an independent patent attorney practice in Bath, England, led by Dr 
 
 ## Ritchie Daniel: Private-practice expertise. In-house perspective.
 
-UK Chartered Patent Attorney, European Patent Attorney and UPC Representative with fifteen years' experience, a PhD and MEng in Mechanical Engineering, and hands-on automotive engineering experience.
+UK Chartered Patent Attorney, European Patent Attorney and UPC Representative with fifteen years' experience and hands-on automotive engineering experience. Ritchie holds an MEng in Mechanical Engineering from the University of Bath and a PhD in Mechanical Engineering from the University of Birmingham.
 
 Ritchie's career spans both private practice and senior in-house roles at Dyson, where he advised engineering teams and senior stakeholders across a range of product categories and technologies. Combining an engineering background with private-practice and in-house experience, he provides technically informed, commercially focused patent advice, delivered personally and directly to each client.
 
