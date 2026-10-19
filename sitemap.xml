@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.ridanip.com/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
+    <image:image>
+      <image:loc>https://www.ridanip.com/ritchie-daniel-bath-stone.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
     <loc>https://www.ridanip.com/about/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
+    <image:image>
+      <image:loc>https://www.ridanip.com/ritchie-daniel-bath-stone.webp</image:loc>
+    </image:image>
   </url>
 
   <url>
     <loc>https://www.ridanip.com/mechanical-engineering-patent-attorney/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
 
   <url>
@@ -98,7 +104,7 @@
 
   <url>
     <loc>https://www.ridanip.com/services/fractional-in-house-support/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-10-19</lastmod>
   </url>
 
   <url>
