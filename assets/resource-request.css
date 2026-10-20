@@ -1,0 +1,16 @@
+/* Resource request styles are scoped to the resource page. */
+.resource-request .field-help{margin:0;font-size:.9rem}
+.resource-request .resource-consent{display:flex;align-items:flex-start;gap:.8rem}
+.resource-request .resource-consent input{width:1.15rem;height:1.15rem;margin:.2rem 0 0;flex:0 0 1.15rem;accent-color:var(--navy)}
+.resource-request .resource-consent label{font-weight:400;line-height:1.55}
+.resource-request .resource-privacy{font-size:.9rem}
+.resource-request #request-context{min-height:6rem}
+.resource-request .resource-draft{border:1px solid var(--line);padding:1.5rem;background:var(--white)}
+.resource-request .resource-draft h3{margin-top:0}
+.resource-request .resource-draft .actions{margin:1rem 0 1.4rem}
+.resource-request #request-preview{min-height:16rem;margin-top:.5rem;font-size:.9rem;line-height:1.5;resize:vertical}
+.resource-request .resource-copy{background:none;border:1px solid var(--navy);padding:.85rem 1rem;color:var(--navy);font:inherit;font-weight:700;cursor:pointer}
+.resource-request button.button{border:0;font:inherit;cursor:pointer;justify-content:center}
+.resource-request [hidden]{display:none!important}
+.resource-request input:focus-visible,.resource-request textarea:focus-visible,.resource-request button:focus-visible,.resource-request a:focus-visible{outline:3px solid var(--copper-accessible);outline-offset:3px}
+@media(max-width:480px){.resource-request .resource-draft{padding:1rem}.resource-request .resource-draft .actions{align-items:stretch;gap:1rem;flex-direction:column}.resource-request .resource-copy{text-align:center}}

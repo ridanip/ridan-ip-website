@@ -214,7 +214,7 @@
         });
         footerGrid.appendChild(accreditations);
     }
-    const form = document.querySelector('form');
+    const form = document.querySelector('form:not([data-resource-request])');
     if (form) {
         form.addEventListener('submit', (event) => {
             event.preventDefault();
