@@ -10,6 +10,7 @@
     const open = document.getElementById('request-open');
     const copy = document.getElementById('request-copy');
     if (!fields || !status || !panel || !preview || !open || !copy) return;
+    const draftHeading = panel.querySelector('h3');
 
     const recipient = 'info@ridanip.com';
     const subject = 'Investment IP Readiness Checklist request';
@@ -48,12 +49,22 @@
         if (mailto.length > 1800) {
             open.hidden = true;
             open.href = 'mailto:' + recipient;
-            status.textContent = 'Your draft is ready below. Please copy the request into your email service and send it to info@ridanip.com. Nothing has been submitted through the website.';
+            status.textContent = 'Your draft is ready. Please copy the request into your email service and send it to info@ridanip.com. Nothing has been submitted through the website.';
         } else {
             open.hidden = false;
             open.href = mailto;
-            status.textContent = 'Your draft is ready below. Open your email application, or copy the request into webmail, then send it. Nothing has been submitted through the website.';
+            status.textContent = 'Your draft is ready. Choose an option below to send it. Nothing has been submitted through the website.';
         }
+        // Bring the next step into view and move keyboard/screen-reader focus
+        // with it. The form remains available above if details need changing.
+        if (draftHeading) {
+            draftHeading.tabIndex = -1;
+            draftHeading.focus({preventScroll: true});
+        }
+        status.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            block: 'start'
+        });
     });
 
     copy.addEventListener('click', async () => {
