@@ -134,6 +134,44 @@
     });
     const header = document.querySelector('header');
     if (header) { const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24); updateHeader(); window.addEventListener('scroll', updateHeader, { passive: true }); }
+    // V073.0: return to the linked article summary without adding history entries.
+    const articleSummary = document.querySelector('[data-article-summary]');
+    const summaryHeading = document.getElementById('article-summary');
+    const summaryArticle = articleSummary && articleSummary.closest('article');
+    if (articleSummary && summaryHeading && summaryArticle) {
+        const summaryReturn = document.createElement('button');
+        summaryReturn.type = 'button';
+        summaryReturn.className = 'summary-return';
+        summaryReturn.hidden = true;
+        summaryReturn.innerHTML = '<span aria-hidden="true">↑</span> Back to summary';
+        summaryReturn.setAttribute('aria-controls', summaryHeading.id);
+        document.body.appendChild(summaryReturn);
+        const updateSummaryReturn = () => {
+            const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+            summaryReturn.hidden = articleSummary.getBoundingClientRect().bottom > headerBottom ||
+                summaryArticle.getBoundingClientRect().bottom <= headerBottom;
+        };
+        let summaryFrame = 0;
+        const queueSummaryUpdate = () => {
+            if (summaryFrame) return;
+            summaryFrame = window.requestAnimationFrame(() => {
+                summaryFrame = 0;
+                updateSummaryReturn();
+            });
+        };
+        summaryReturn.addEventListener('click', () => {
+            summaryHeading.focus({ preventScroll: true });
+            summaryHeading.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+                block: 'start'
+            });
+        });
+        window.addEventListener('scroll', queueSummaryUpdate, { passive: true });
+        window.addEventListener('resize', queueSummaryUpdate);
+        window.addEventListener('pageshow', queueSummaryUpdate);
+        if ('ResizeObserver' in window) new ResizeObserver(queueSummaryUpdate).observe(summaryArticle);
+        updateSummaryReturn();
+    }
     const lifecycleStages = Array.from(document.querySelectorAll('.lifecycle-stage'));
     if (lifecycleStages.length) {
         const hoverOpenedStages = new WeakSet();
