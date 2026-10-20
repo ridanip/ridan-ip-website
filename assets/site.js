@@ -143,7 +143,7 @@
         summaryReturn.type = 'button';
         summaryReturn.className = 'summary-return';
         summaryReturn.hidden = true;
-        summaryReturn.innerHTML = '<span aria-hidden="true">↑</span> Back to summary';
+        summaryReturn.innerHTML = '<span aria-hidden="true"></span> Back to summary';
         summaryReturn.setAttribute('aria-controls', summaryHeading.id);
         document.body.appendChild(summaryReturn);
         const updateSummaryReturn = () => {

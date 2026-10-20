@@ -191,7 +191,7 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 
 /* V073.0: discreet navigation for articles with a linked summary. */
 .summary-return{position:fixed;right:max(1rem,env(safe-area-inset-right));bottom:calc(1rem + env(safe-area-inset-bottom));z-index:40;display:inline-flex;align-items:center;justify-content:center;gap:.65rem;min-height:44px;padding:.7rem 1rem;border:1px solid var(--copper);background:var(--navy);color:var(--white);font:700 .82rem/1.3 Arial,Helvetica,sans-serif;box-shadow:0 4px 16px rgba(4,17,45,.16);cursor:pointer;transition:background-color .18s ease,color .18s ease}
-.summary-return span{color:var(--copper);font-size:1.1rem}
+.summary-return span{display:block;flex:none;width:.55rem;height:.55rem;border-top:2px solid currentColor;border-right:2px solid currentColor;color:var(--copper);transform:translateY(.15rem) rotate(-45deg)}
 .summary-return[hidden],.menu-open .summary-return{display:none}
 .summary-return:focus-visible{outline:3px solid var(--copper-accessible);outline-offset:3px}
 #article-summary{scroll-margin-top:1.5rem}
