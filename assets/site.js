@@ -36,6 +36,7 @@
             const articlesMenu = document.createElement('div'); articlesMenu.className = 'dropdown-menu';
             const articleItems = [
                 ['Overview', ''],
+                ['IP Audit Funding', 'ip-audit-funding-for-uk-smes/'],
                 ['AI Patent Drafting', 'can-i-use-ai-to-draft-my-patent-application/'],
                 ['How Much Does a UK Patent Application Cost?', 'how-much-does-a-uk-patent-application-cost/'],
                 ['Patent or Trade Secret?', 'patent-or-trade-secret/'],
