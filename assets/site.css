@@ -199,3 +199,44 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 @media(hover:hover){.summary-return:hover{background:var(--copper);color:var(--navy)}.summary-return:hover span{color:var(--navy)}}
 @media(prefers-reduced-motion:reduce){.summary-return{transition:none}}
 @media print{.summary-return{display:none}}
+
+/* V076.0: discreet, one-step access to email and telephone from the fixed header. */
+.nav-actions{display:none}
+.nav-contact-desktop .contact-panel{left:auto;right:0;width:19rem;min-width:19rem}
+.contact-panel{padding:0!important;background:#0b1c3a;border:1px solid #b8976c80;box-shadow:0 18px 36px rgba(0,8,25,.32);color:#fff}
+.contact-panel-heading{margin:0;padding:1rem 1.1rem .65rem;color:var(--copper);font-size:.66rem;font-weight:700;letter-spacing:.14em}
+.contact-panel-section{padding:.75rem 1.1rem .9rem;border-top:1px solid #ffffff24}
+.contact-panel-label{display:block;margin-bottom:.28rem;color:#abb6c9;font-size:.62rem;letter-spacing:.12em;font-weight:700}
+.contact-panel-email-row{display:flex;align-items:center;gap:.5rem;min-width:0}
+.nav nav .contact-panel a.contact-panel-detail,.contact-panel a.contact-panel-detail{display:inline-block;min-width:0;padding:0;border:0;color:#fff;font-size:.9rem;font-weight:600;letter-spacing:0;white-space:normal;overflow-wrap:anywhere}
+.nav nav .contact-panel a.contact-panel-detail:hover,.contact-panel a.contact-panel-detail:hover{background:none;color:var(--copper)}
+.contact-copy{flex:none;margin-left:auto;min-height:36px;padding:.36rem .55rem;border:1px solid #ffffff48;background:transparent;color:#e4e7ec;font:inherit;font-size:.67rem;line-height:1.15;min-width:3.6rem;cursor:pointer}
+.contact-copy:hover{border-color:var(--copper);color:var(--copper)}
+.contact-panel-links{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.1rem;border-top:1px solid #ffffff24}
+.nav nav .contact-panel .contact-panel-links a,.contact-panel .contact-panel-links a{display:inline-flex;gap:.4rem;align-items:center;padding:0;border:0;color:#d6dce8;font-size:.74rem;font-weight:500;white-space:nowrap}
+.nav nav .contact-panel .contact-panel-links a:hover,.contact-panel .contact-panel-links a:hover{background:none;color:var(--copper)}
+.contact-panel-links a span{color:var(--copper)}
+.contact-panel :is(a,button):focus-visible,.quick-contact-toggle:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+@media(max-width:960px){
+  .nav-contact-desktop{display:none}
+  .nav-actions{display:flex;align-items:center;gap:1.15rem;margin-left:auto}
+  .quick-contact-toggle{display:inline-flex;align-items:center;gap:.32rem;min-height:44px;padding:0;border:0;background:transparent;color:#fff;font:inherit;font-size:.91rem;cursor:pointer}
+  .quick-contact-toggle:hover,.quick-contact.open .quick-contact-toggle{color:var(--copper)}
+  .quick-contact.open .nav-chevron{transform:rotate(90deg)}
+  .nav-actions .menu{min-height:44px;white-space:nowrap;font-size:.91rem;cursor:pointer}
+  .quick-contact>.contact-panel{display:none;position:fixed;left:auto;right:max(1rem,env(safe-area-inset-right));top:calc(var(--header-full) - .3rem);width:min(20.5rem,calc(100vw - 2rem));min-width:0;max-height:calc(100dvh - var(--header-full) - 1rem);overflow-y:auto;overscroll-behavior:contain;z-index:55}
+  header.is-scrolled .quick-contact>.contact-panel{top:calc(var(--header-compact) - .3rem);max-height:calc(100dvh - var(--header-compact) - 1rem)}
+  .quick-contact.open>.contact-panel{display:block}
+}
+@media(max-width:768px){
+  .nav-actions{gap:.85rem}
+  .logo img{width:175px}
+  header.is-scrolled .logo img{width:160px}
+}
+@media(max-width:360px){
+  .nav-actions{gap:.6rem}
+  .logo img{width:148px}
+  header.is-scrolled .logo img{width:140px}
+  .quick-contact-toggle,.nav-actions .menu{font-size:.83rem}
+}
+@media print{.quick-contact,.nav-contact-desktop .contact-panel{display:none!important}}

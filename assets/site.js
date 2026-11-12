@@ -51,11 +51,94 @@
             articlesDropdown.append(articlesToggle, articlesMenu); articlesLink.replaceWith(articlesDropdown);
         }
     }
+    // V076.0: direct contact details in the existing desktop navigation and compact header.
+    // The original Contact link remains available when JavaScript is disabled.
+    const contactLink = navigation && Array.from(navigation.children).find((item) => item.matches('a') && item.textContent.trim().toLowerCase() === 'contact');
+    let quickContact = null;
+    let quickContactToggle = null;
+    const buildContactPanel = (contactHref) => {
+        const panel = document.createElement('div');
+        panel.className = 'dropdown-menu contact-panel';
+        panel.innerHTML = `
+            <p class="contact-panel-heading">CONTACT RIDAN IP</p>
+            <div class="contact-panel-section">
+                <span class="contact-panel-label">EMAIL</span>
+                <div class="contact-panel-email-row">
+                    <a class="contact-panel-detail" href="mailto:info@ridanip.com">info@ridanip.com</a>
+                    <button type="button" class="contact-copy" aria-label="Copy email address">Copy</button>
+                </div>
+            </div>
+            <div class="contact-panel-section">
+                <span class="contact-panel-label">TELEPHONE</span>
+                <a class="contact-panel-detail" href="tel:+441225962400">+44 1225 962400</a>
+            </div>
+            <div class="contact-panel-links">
+                <a href="https://wa.me/441225962400" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
+                <a class="contact-page-link" href="${contactHref}">Contact page <span aria-hidden="true">›</span></a>
+            </div>`;
+        const copyButton = panel.querySelector('.contact-copy');
+        copyButton.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText('info@ridanip.com');
+                copyButton.textContent = 'Copied';
+                copyButton.setAttribute('aria-label', 'Email address copied');
+            } catch (_) {
+                copyButton.textContent = 'Unavailable';
+                copyButton.setAttribute('aria-label', 'Copy unavailable; select the email address instead');
+            }
+        });
+        return panel;
+    };
+    if (contactLink && menuButton) {
+        const contactHref = contactLink.href;
+        const desktopContact = document.createElement('div');
+        desktopContact.className = 'nav-dropdown nav-contact-desktop';
+        const desktopContactToggle = document.createElement('button');
+        desktopContactToggle.type = 'button';
+        desktopContactToggle.className = 'nav-dropdown-toggle';
+        desktopContactToggle.setAttribute('aria-expanded', 'false');
+        desktopContactToggle.innerHTML = 'Contact <span class="nav-chevron" aria-hidden="true">›</span>';
+        if (contactLink.hasAttribute('aria-current')) desktopContactToggle.setAttribute('aria-current', 'page');
+        desktopContact.append(desktopContactToggle, buildContactPanel(contactHref));
+        contactLink.replaceWith(desktopContact);
+
+        const actions = document.createElement('div');
+        actions.className = 'nav-actions';
+        quickContact = document.createElement('div');
+        quickContact.className = 'quick-contact';
+        quickContactToggle = document.createElement('button');
+        quickContactToggle.type = 'button';
+        quickContactToggle.className = 'quick-contact-toggle';
+        quickContactToggle.setAttribute('aria-expanded', 'false');
+        quickContactToggle.setAttribute('aria-controls', 'quick-contact-panel');
+        quickContactToggle.innerHTML = 'Contact <span class="nav-chevron" aria-hidden="true">›</span>';
+        const quickPanel = buildContactPanel(contactHref);
+        quickPanel.id = 'quick-contact-panel';
+        quickContact.append(quickContactToggle, quickPanel);
+        menuButton.before(actions);
+        actions.append(quickContact, menuButton);
+    }
+    const resetContactCopy = (container) => {
+        const copyButton = container && container.querySelector('.contact-copy');
+        if (copyButton) {
+            copyButton.textContent = 'Copy';
+            copyButton.setAttribute('aria-label', 'Copy email address');
+        }
+    };
+    const setQuickContact = (open) => {
+        if (!quickContactToggle) return;
+        if (!open) resetContactCopy(quickContact);
+        quickContact.classList.toggle('open', open);
+        quickContactToggle.setAttribute('aria-expanded', String(open));
+    };
     const hoverInput = window.matchMedia('(hover: hover) and (pointer: fine)');
     const navDropdowns = navigation ? Array.from(navigation.querySelectorAll('.nav-dropdown')) : [];
     const hoverOpenedNav = new WeakSet();
     const setNavDropdown = (dropdown, open) => {
-        if (!open) hoverOpenedNav.delete(dropdown);
+        if (!open) {
+            hoverOpenedNav.delete(dropdown);
+            if (dropdown.classList.contains('nav-contact-desktop')) resetContactCopy(dropdown);
+        }
         dropdown.classList.toggle('open', open);
         dropdown.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded', String(open));
     };
@@ -63,6 +146,7 @@
         navDropdowns.forEach((dropdown) => { if (dropdown !== except) setNavDropdown(dropdown, false); });
     };
     const closeNavigation = () => {
+        setQuickContact(false);
         if (navigation) navigation.classList.remove('open');
         document.body.classList.remove('menu-open');
         if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
@@ -104,6 +188,27 @@
             toggle.focus();
         });
     });
+    if (quickContactToggle) {
+        quickContactToggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const open = quickContactToggle.getAttribute('aria-expanded') !== 'true';
+            closeNavigation();
+            setQuickContact(open);
+        });
+        quickContact.addEventListener('focusout', (event) => {
+            if (!quickContact.contains(event.relatedTarget)) setQuickContact(false);
+        });
+        document.addEventListener('click', (event) => {
+            if (!quickContact.contains(event.target)) setQuickContact(false);
+        });
+        quickContact.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape' || quickContactToggle.getAttribute('aria-expanded') !== 'true') return;
+            event.preventDefault();
+            event.stopPropagation();
+            setQuickContact(false);
+            quickContactToggle.focus();
+        });
+    }
     if (navigation) {
         navigation.addEventListener('click', (event) => {
             if (event.target.closest('a')) closeNavigation();
@@ -113,6 +218,7 @@
         });
     }
     if (menuButton && navigation) menuButton.addEventListener('click', () => {
+        setQuickContact(false);
         const open = menuButton.getAttribute('aria-expanded') !== 'true';
         if (!open) { closeNavigation(); return; }
         menuButton.setAttribute('aria-expanded', 'true');
@@ -128,10 +234,15 @@
         } else if (navDropdowns.some((dropdown) => dropdown.classList.contains('open'))) {
             event.preventDefault();
             closeAllNavDropdowns();
+        } else if (quickContactToggle && quickContactToggle.getAttribute('aria-expanded') === 'true') {
+            event.preventDefault();
+            setQuickContact(false);
+            quickContactToggle.focus();
         }
     });
     window.addEventListener('resize', () => {
         if (window.innerWidth > 960) closeNavigation();
+        else closeAllNavDropdowns();
     });
     const header = document.querySelector('header');
     if (header) { const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 24); updateHeader(); window.addEventListener('scroll', updateHeader, { passive: true }); }
