@@ -51,7 +51,7 @@
             articlesDropdown.append(articlesToggle, articlesMenu); articlesLink.replaceWith(articlesDropdown);
         }
     }
-    // V076.0: direct contact details in the existing desktop navigation and compact header.
+    // V076.1: direct email and telephone access in the desktop navigation and compact header.
     // The original Contact link remains available when JavaScript is disabled.
     const contactLink = navigation && Array.from(navigation.children).find((item) => item.matches('a') && item.textContent.trim().toLowerCase() === 'contact');
     let quickContact = null;
@@ -73,7 +73,6 @@
                 <a class="contact-panel-detail" href="tel:+441225962400">+44 1225 962400</a>
             </div>
             <div class="contact-panel-links">
-                <a href="https://wa.me/441225962400" target="_blank" rel="noopener noreferrer">WhatsApp <span aria-hidden="true">↗</span></a>
                 <a class="contact-page-link" href="${contactHref}">Contact page <span aria-hidden="true">›</span></a>
             </div>`;
         const copyButton = panel.querySelector('.contact-copy');

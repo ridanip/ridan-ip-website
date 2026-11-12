@@ -200,7 +200,7 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 @media(prefers-reduced-motion:reduce){.summary-return{transition:none}}
 @media print{.summary-return{display:none}}
 
-/* V076.0: discreet, one-step access to email and telephone from the fixed header. */
+/* V076.0–V076.1: discreet, one-step access to email and telephone from the fixed header. */
 .nav-actions{display:none}
 .nav-contact-desktop .contact-panel{left:auto;right:0;width:19rem;min-width:19rem}
 .contact-panel{padding:0!important;background:#0b1c3a;border:1px solid #b8976c80;box-shadow:0 18px 36px rgba(0,8,25,.32);color:#fff}
@@ -212,7 +212,7 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 .nav nav .contact-panel a.contact-panel-detail:hover,.contact-panel a.contact-panel-detail:hover{background:none;color:var(--copper)}
 .contact-copy{flex:none;margin-left:auto;min-height:36px;padding:.36rem .55rem;border:1px solid #ffffff48;background:transparent;color:#e4e7ec;font:inherit;font-size:.67rem;line-height:1.15;min-width:3.6rem;cursor:pointer}
 .contact-copy:hover{border-color:var(--copper);color:var(--copper)}
-.contact-panel-links{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 1.1rem;border-top:1px solid #ffffff24}
+.contact-panel-links{display:flex;align-items:center;justify-content:flex-end;gap:1rem;padding:.75rem 1.1rem;border-top:1px solid #ffffff24}
 .nav nav .contact-panel .contact-panel-links a,.contact-panel .contact-panel-links a{display:inline-flex;gap:.4rem;align-items:center;padding:0;border:0;color:#d6dce8;font-size:.74rem;font-weight:500;white-space:nowrap}
 .nav nav .contact-panel .contact-panel-links a:hover,.contact-panel .contact-panel-links a:hover{background:none;color:var(--copper)}
 .contact-panel-links a span{color:var(--copper)}
@@ -223,7 +223,11 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
   .quick-contact-toggle{display:inline-flex;align-items:center;gap:.32rem;min-height:44px;padding:0;border:0;background:transparent;color:#fff;font:inherit;font-size:.91rem;cursor:pointer}
   .quick-contact-toggle:hover,.quick-contact.open .quick-contact-toggle{color:var(--copper)}
   .quick-contact.open .nav-chevron{transform:rotate(90deg)}
-  .nav-actions .menu{min-height:44px;white-space:nowrap;font-size:.91rem;cursor:pointer}
+  .nav-actions .menu{display:inline-flex;align-items:center;gap:.32rem;min-height:44px;white-space:nowrap;font-size:.91rem;cursor:pointer}
+  .nav-actions .menu[aria-expanded="true"]{color:var(--copper)}
+  .nav-actions .menu span{display:inline-block;color:var(--copper);font-size:.9rem;line-height:1;transition:transform .18s ease}
+  .nav-actions .menu[aria-expanded="true"] span{transform:rotate(90deg)}
+  @media(hover:hover){.nav-actions .menu:hover{color:var(--copper)}}
   .quick-contact>.contact-panel{display:none;position:fixed;left:auto;right:max(1rem,env(safe-area-inset-right));top:calc(var(--header-full) - .3rem);width:min(20.5rem,calc(100vw - 2rem));min-width:0;max-height:calc(100dvh - var(--header-full) - 1rem);overflow-y:auto;overscroll-behavior:contain;z-index:55}
   header.is-scrolled .quick-contact>.contact-panel{top:calc(var(--header-compact) - .3rem);max-height:calc(100dvh - var(--header-compact) - 1rem)}
   .quick-contact.open>.contact-panel{display:block}
@@ -239,4 +243,5 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
   header.is-scrolled .logo img{width:140px}
   .quick-contact-toggle,.nav-actions .menu{font-size:.83rem}
 }
+@media(prefers-reduced-motion:reduce){.nav-actions .menu span{transition:none}}
 @media print{.quick-contact,.nav-contact-desktop .contact-panel{display:none!important}}
