@@ -1,6 +1,6 @@
 # RIDAN IP: Patent expertise for technology that matters
 
-RIDAN IP is an independent patent attorney practice in Bath, England, led by Dr Ritchie Daniel. UK and European patent advice for startups, SMEs and technology-led businesses, with a focus on engineering and physical products.
+RIDAN IP is an independent patent attorney practice in Bath, England, led by Dr Ritchie Daniel. Original patent drafting, UK and European prosecution and IP advice for startups, SMEs and overseas businesses developing engineering and physical products.
 
 [Discuss your technology](https://www.ridanip.com/contact/) | [Explore services](https://www.ridanip.com/services/)
 
@@ -8,7 +8,7 @@ RIDAN IP is an independent patent attorney practice in Bath, England, led by Dr 
 
 UK Chartered Patent Attorney, European Patent Attorney and UPC Representative with fifteen years' experience and hands-on automotive engineering experience. Ritchie holds an MEng in Mechanical Engineering from the University of Bath and a PhD in Mechanical Engineering from the University of Birmingham.
 
-Ritchie's career spans both private practice and senior in-house roles at Dyson, where he advised engineering teams and senior stakeholders across a range of product categories and technologies. Combining an engineering background with private-practice and in-house experience, he provides technically informed, commercially focused patent advice, delivered personally and directly to each client.
+Ritchie's patent experience covers automotive engineering, aerospace, consumer electronics, printing technologies and domestic products. His career spans original patent drafting in private practice and senior in-house work at Dyson, including invention identification and portfolio development. Clients work directly with Ritchie for technically informed advice shaped around their commercial objectives.
 
 [About Ritchie](https://www.ridanip.com/about/) | [Patent support for engineering and physical products](https://www.ridanip.com/mechanical-engineering-patent-attorney/)
 
@@ -70,7 +70,7 @@ IP support for products, businesses and decisions.
 
 Patent drafting and prosecution, registered designs, freedom-to-operate and product clearance, IP strategy, trade secrets and IP audits. [Fractional in-house patent counsel](https://www.ridanip.com/services/fractional-in-house-support/) brings ongoing IP support alongside your team.
 
-- [Patents](https://www.ridanip.com/services/patents/): Patent drafting, prosecution and portfolio development.
+- [Patents](https://www.ridanip.com/services/patents/): Original patent drafting, UK and European prosecution and portfolio development.
 - [Registered designs](https://www.ridanip.com/services/registered-designs/): UK and EU registered-design strategy and preparation.
 - [Trade secrets](https://www.ridanip.com/services/trade-secrets/): Protecting valuable confidential information and know-how.
 - [IP strategy and opinions](https://www.ridanip.com/services/ip-strategy-opinions/): Clearance, freedom to operate, validity, due diligence and contentious work.
@@ -84,6 +84,12 @@ Patent drafting and prosecution, registered designs, freedom-to-operate and prod
 UK and European patent support for overseas patent attorneys and agents, including US sole practitioners and small firms. Work directly with Ritchie Daniel on your clients' filings and prosecution, with reporting and client-contact arrangements agreed with you.
 
 [Support for overseas attorneys](https://www.ridanip.com/overseas-attorneys/)
+
+Overseas companies, including US businesses, can also instruct RIDAN IP directly for suitable UK and European patent matters. [Direct overseas patent instructions](https://www.ridanip.com/services/patents/#overseas-businesses).
+
+## Practical patent FAQs
+
+[Patent FAQs for engineering and technology businesses](https://www.ridanip.com/articles/patent-faqs/): Original drafting, patent timing, UK and European filings, PCT national-phase entry and working with RIDAN IP.
 
 ## Contact: Discuss your technology
 

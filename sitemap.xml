@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://www.ridanip.com/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <image:image>
       <image:loc>https://www.ridanip.com/ritchie-daniel-bath-stone.webp</image:loc>
     </image:image>
@@ -11,7 +11,7 @@
 
   <url>
     <loc>https://www.ridanip.com/about/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <image:image>
       <image:loc>https://www.ridanip.com/ritchie-daniel-bath-stone.webp</image:loc>
     </image:image>
@@ -19,7 +19,7 @@
 
   <url>
     <loc>https://www.ridanip.com/mechanical-engineering-patent-attorney/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-11-21</lastmod>
   </url>
 
   <url>
@@ -29,10 +29,10 @@
 
   <url>
     <loc>https://www.ridanip.com/articles/</loc>
-    <lastmod>2026-10-18</lastmod>
+    <lastmod>2026-11-21</lastmod>
   </url>
 
-  <url>
+  <url><loc>https://www.ridanip.com/articles/patent-faqs/</loc><lastmod>2026-11-21</lastmod></url><url>
     <loc>https://www.ridanip.com/articles/how-much-does-a-uk-patent-application-cost/</loc>
     <lastmod>2026-11-21</lastmod>
   </url>
@@ -94,7 +94,7 @@
 
   <url>
     <loc>https://www.ridanip.com/articles/when-should-a-startup-file-a-patent-application/</loc>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-21</lastmod>
   </url>
 
   <url>
@@ -119,7 +119,7 @@
 
   <url>
     <loc>https://www.ridanip.com/services/patents/</loc>
-    <lastmod>2026-10-17</lastmod>
+    <lastmod>2026-11-21</lastmod>
   </url>
 
   <url>
