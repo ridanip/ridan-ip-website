@@ -245,3 +245,32 @@ h1.patent-cost-title .uk-patent{white-space:nowrap}
 }
 @media(prefers-reduced-motion:reduce){.nav-actions .menu span{transition:none}}
 @media print{.quick-contact,.nav-contact-desktop .contact-panel{display:none!important}}
+
+/* V077.1: scoped FAQ presentation refinements */
+.faq-page .faq-intro{padding:3.8rem 0 3.1rem;background:#fff}
+.faq-page .faq-intro .prose>p:first-child{margin-top:0}
+.faq-page .faq-topic{padding:3.5rem 0 3.9rem}
+.faq-page .faq-topic.paper{background:var(--paper)}
+.faq-page .faq-topic.white{background:#fff}
+.faq-page .faq-topic h2{margin:0 0 1.75rem;padding:0;font-size:clamp(1.95rem,3.35vw,2.8rem);line-height:1.13;letter-spacing:-.035em}
+.faq-page .faq-topic h2::before{content:'›';display:inline-block;margin-right:.42em;color:var(--copper-accessible)}
+.faq-page .faq-topic h2:focus:not(:focus-visible){outline:none}
+.faq-page .faq-topic h2:focus-visible{outline:2px solid var(--copper-accessible);outline-offset:5px}
+.faq-page .faq-questions{list-style:decimal-leading-zero;margin:0;padding-left:2.4rem}
+.faq-page .faq-question{padding-left:.45rem;scroll-margin-top:calc(var(--header-compact) + 1.25rem)}
+.faq-page .faq-question::marker{color:var(--copper-accessible);font-size:.85rem;font-weight:700}
+.faq-page .faq-question + .faq-question{margin-top:2.05rem}
+.faq-page .faq-question h3{font-size:1.22rem;line-height:1.38;margin:0 0 .48rem;letter-spacing:-.012em}
+.faq-page .faq-question p{margin:0;line-height:1.7}
+.faq-page .faq-more-links{margin-top:2.75rem;padding-top:1.5rem;border-top:1px solid var(--line)}
+.faq-page .faq-more-links p{margin:0}
+.faq-page .faq-cta{background:var(--paper);padding:3.9rem 0 4.3rem}
+@media(max-width:768px){
+  .faq-page .faq-intro{padding:3rem 0 2.5rem}
+  .faq-page .faq-topic{padding:2.75rem 0 3rem}
+  .faq-page .faq-topic h2{margin-bottom:1.5rem}
+  .faq-page .faq-questions{padding-left:2.05rem}
+  .faq-page .faq-question + .faq-question{margin-top:1.9rem}
+  .faq-page .faq-question h3{font-size:1.16rem}
+  .faq-page .faq-cta{padding:3rem 0 3.3rem}
+}
