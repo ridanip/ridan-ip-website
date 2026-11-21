@@ -111,7 +111,7 @@ def main():
                 target_page = pages.get(BASE + ('' if path.parent == ROOT else path.parent.relative_to(ROOT).as_posix() + '/'))
                 check(target_page and unquote(parsed.fragment) in target_page.ids, f'{label}: missing fragment {target}')
         all_nodes = list(objects(page.scripts))
-        webpages = [n for n in all_nodes if n.get('@type') == 'WebPage']
+        webpages = [n for n in all_nodes if n.get('@type') in ('WebPage', 'ProfilePage')]  # ProfilePage is a WebPage subtype
         check(len(webpages) == 1, f'{label}: needs one WebPage entity')
         if webpages:
             wp = webpages[0]
