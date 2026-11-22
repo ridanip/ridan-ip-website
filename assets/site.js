@@ -34,16 +34,18 @@
             const articlesToggle = document.createElement('button'); articlesToggle.type = 'button'; articlesToggle.className = 'nav-dropdown-toggle'; articlesToggle.setAttribute('aria-expanded', 'false'); articlesToggle.innerHTML = 'Articles <span class="nav-chevron" aria-hidden="true">›</span>';
             if (articlesLink.hasAttribute('aria-current')) articlesToggle.setAttribute('aria-current', 'page');
             const articlesMenu = document.createElement('div'); articlesMenu.className = 'dropdown-menu';
+            // V077.2: match the left-to-right, top-to-bottom order of the article cards.
             const articleItems = [
                 ['Overview', ''],
+                ['Patent FAQs for Technology Businesses', 'patent-faqs/'],
                 ['IP Audit Funding', 'ip-audit-funding-for-uk-smes/'],
                 ['AI Patent Drafting', 'can-i-use-ai-to-draft-my-patent-application/'],
                 ['How Much Does a UK Patent Application Cost?', 'how-much-does-a-uk-patent-application-cost/'],
                 ['Patent or Trade Secret?', 'patent-or-trade-secret/'],
-                ['When Should a Startup File?', 'when-should-a-startup-file-a-patent-application/'],
                 ['Patenting for Startups', 'patenting-for-startups/'],
-                ['Who Owns the IP?', 'who-owns-the-intellectual-property/'],
+                ['When Should a Startup File?', 'when-should-a-startup-file-a-patent-application/'],
                 ['Preparing for Investment', 'what-investors-look-for-in-an-ip-portfolio/'],
+                ['Who Owns the IP?', 'who-owns-the-intellectual-property/'],
                 ['Fractional In-House IP Support', 'fractional-in-house-ip-support-when-does-it-make-sense/']
             ];
             const currentArticlesPath = window.location.pathname.replace(/\/+$/, '') + '/';
@@ -282,6 +284,44 @@
         window.addEventListener('pageshow', queueSummaryUpdate);
         if ('ResizeObserver' in window) new ResizeObserver(queueSummaryUpdate).observe(summaryArticle);
         updateSummaryReturn();
+    }
+    // V077.2: reuse the existing article return-button styling on the long FAQ page only.
+    const faqPage = document.querySelector('main.faq-page');
+    if (faqPage) {
+        const faqIntro = faqPage.querySelector('.faq-intro');
+        const faqHeading = faqPage.querySelector('h1');
+        if (faqIntro && faqHeading) {
+            const topButton = document.createElement('button');
+            topButton.type = 'button';
+            topButton.className = 'summary-return';
+            topButton.hidden = true;
+            topButton.innerHTML = '<span aria-hidden="true"></span> Back to top';
+            document.body.appendChild(topButton);
+            let topFrame = 0;
+            const updateTopButton = () => {
+                const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+                topButton.hidden = faqIntro.getBoundingClientRect().bottom > headerBottom;
+            };
+            const queueTopUpdate = () => {
+                if (topFrame) return;
+                topFrame = window.requestAnimationFrame(() => {
+                    topFrame = 0;
+                    updateTopButton();
+                });
+            };
+            topButton.addEventListener('click', () => {
+                faqHeading.tabIndex = -1;
+                faqHeading.focus({ preventScroll: true });
+                window.scrollTo({
+                    top: 0,
+                    behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'
+                });
+            });
+            window.addEventListener('scroll', queueTopUpdate, { passive: true });
+            window.addEventListener('resize', queueTopUpdate);
+            window.addEventListener('pageshow', queueTopUpdate);
+            updateTopButton();
+        }
     }
     const lifecycleStages = Array.from(document.querySelectorAll('.lifecycle-stage'));
     if (lifecycleStages.length) {
